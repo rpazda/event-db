@@ -1,3 +1,31 @@
+<$php session_start(); ?>
+
+<$php 
+
+	if(isset($_SESSION['use']))
+	{
+		header("Location:home.php");
+	}
+	
+	if(isset($_POST['login']))
+	{
+		$user = $_POST['user'];
+		$pass = $_POST['pass'];
+		
+		if($user == "" && $pass == "")
+		{
+			$_SESSION['use'] = $user;
+			
+			echo '<script type="text/javascript"> window.open("home.php", "_self");</script>';
+		}
+		else
+		{
+			echo "invalid user name or password"
+		}
+	}
+
+?>
+
 <html>
 
 	<head>
