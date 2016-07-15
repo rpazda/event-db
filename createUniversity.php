@@ -23,18 +23,18 @@
 						<div class="panel-body">
 							
 							<div class="form-group">
-								<label for="newuniversity-name">University Name</label>
-								<input type="text" class="form-control" id="newuniversity-name" placeholder="University Name">
+								<label for="newUniversity-name">University Name</label>
+								<input type="text" class="form-control" id="newUniversity-name" placeholder="University Name">
 							</div>
 							
 							<div class="form-group">
-								<label for="newuniversity-description">University Description</label>
-								<textarea rows="5" class="form-control" id="newuniversity-description" placeholder="Description"></textarea>
+								<label for="newUniversity-description">University Description</label>
+								<textarea rows="5" class="form-control" id="newUniversity-description" placeholder="Description"></textarea>
 							</div>
 							
 							<div>
-								<label for="newuniversity-location">University Location</label>
-								<div id="newuniversity-location">
+								<label for="newUniversity-location">University Location</label>
+								<div id="newUniversity-location">
 									<div class="panel panel-danger">
 										<div class="panel-heading">
 											MAPS
