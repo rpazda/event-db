@@ -17,7 +17,7 @@
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							Approve RSOs
+							Join RSOs
 						</div>
 						
 						<div class="panel-body">
@@ -31,7 +31,7 @@
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							Approve Events
+							Leave RSOs
 						</div>
 						
 						<div class="panel-body">

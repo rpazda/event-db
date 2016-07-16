@@ -1,5 +1,6 @@
 <html>
 
+
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
@@ -51,20 +52,35 @@
 						<div class="panel-body">
 							
 							<div class="form-group">
-								<label for="newuser-name">Name</label>
-								<input type="text" class="form-control" id="newuser-name" placeholder="Student Name">
+								<label for="newUser-name">Name</label>
+								<input type="text" class="form-control" id="newUser-name" placeholder="Student Name">
 							</div>
+							
 							<div class="form-group">
-								<label for="newuser-university">University</label>
-								<input type="email" class="form-control" id="newuser-university" placeholder="University">
+								<label for="newUser-university">University</label>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" id="university-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										University
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="university-select">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+									</ul>
+								</div>
 							</div>
+							
 							<div class="form-group">
-								<label for="newuser-id">Email</label>
-								<input type="email" class="form-control" id="login-id" placeholder="University Email">
+								<label for="newUser-id">Email</label>
+								<input type="email" class="form-control" id="newUser-id" placeholder="University Email">
 							</div>
+							
 							<div class="form-group">
-								<label for="newuser-password">Password</label>
-								<input type="password" class="form-control" id="login-password">
+								<label for="newUser-password">Password</label>
+								<input type="password" class="form-control" id="newUser-password">
 							</div>
 							
 						</div>	
