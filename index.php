@@ -5,6 +5,7 @@
 		
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
+		<script src="content/list.min.js"></script>
 
 		
 	</head>
@@ -47,7 +48,7 @@
 						</li>
 					</ul>
 					
-					<div class="col-sm-8">
+					<div class="col-sm-8" id="event-pane">
 					
 						<h2>Events</h2>
 						
