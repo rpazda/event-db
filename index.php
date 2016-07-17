@@ -1,3 +1,5 @@
+
+
 <html>
 
 	<head>
@@ -11,24 +13,15 @@
 	</head>
 	
 	<body>
+		<?php
+			include_once "header.php";
+		?>
 	
 		<div class="container-fluid">
-		
-			<div id="header" class="row" style="background-color: black; height:80px;">
-				
-				<div class="col-md-4">
-					<img src="content/assets/ucf-logo.png" style="height:100%;"></img>
-				</div>
-				
-				<div class="col-md-8"></div>
-			
-			</div>
 			
 			<div class="row">
 				
 				<div class="col-md-8 col-md-offset-2">
-				
-					<h1>Events at UCF</h1>
 					
 					<ul class="nav nav-tabs">
 						<li role="presentation" class="active">
@@ -133,6 +126,9 @@
 	
 		</div>
 	
+		<?php
+			include_once "footer.php";
+		?>
 	</body>
 	
 </html>
