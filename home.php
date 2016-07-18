@@ -8,6 +8,82 @@
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
 
 		<script src="content/list.min.js"></script>
+		<script src="http://listjs.com/no-cdn/list.js"></script>
+		<script src="content/scripts/events.js"></script>
+		
+		<script>
+		
+			.list {
+			  font-family:sans-serif;
+			}
+			td {
+			  padding:10px; 
+			  border:solid 1px #eee;
+			}
+
+			input {
+			  border:solid 1px #ccc;
+			  border-radius: 5px;
+			  padding:7px 14px;
+			  margin-bottom:10px
+			}
+			input:focus {
+			  outline:none;
+			  border-color:#aaa;
+			}
+			.sort {
+			  padding:8px 30px;
+			  border-radius: 6px;
+			  border:none;
+			  display:inline-block;
+			  color:#fff;
+			  text-decoration: none;
+			  background-color: #28a8e0;
+			  height:30px;
+			}
+			.sort:hover {
+			  text-decoration: none;
+			  background-color:#1b8aba;
+			}
+			.sort:focus {
+			  outline:none;
+			}
+			.sort:after {
+			  display:inline-block;
+			  width: 0;
+			  height: 0;
+			  border-left: 5px solid transparent;
+			  border-right: 5px solid transparent;
+			  border-bottom: 5px solid transparent;
+			  content:"";
+			  position: relative;
+			  top:-10px;
+			  right:-5px;
+			}
+			.sort.asc:after {
+			  width: 0;
+			  height: 0;
+			  border-left: 5px solid transparent;
+			  border-right: 5px solid transparent;
+			  border-top: 5px solid #fff;
+			  content:"";
+			  position: relative;
+			  top:4px;
+			  right:-5px;
+			}
+			.sort.desc:after {
+			  width: 0;
+			  height: 0;
+			  border-left: 5px solid transparent;
+			  border-right: 5px solid transparent;
+			  border-bottom: 5px solid #fff;
+			  content:"";
+			  position: relative;
+			  top:-4px;
+			  right:-5px;
+}
+		
+		</script>
 
 		
 	</head>
@@ -76,51 +152,73 @@
 					
 					<div class="col-sm-8" id="event-pane" style="margin-top: 15px;">
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event 
+						<div id="events-list">
+							
+							<div class="input-group" style="margin-bottom:10px;">
+								<input class="search form-control" placeholder="Search" />
 							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
+							
+							<button class="sort btn btn-default" data-sort="event-name">
+								Sort by name
+							</button>
+							
+							<button class="sort btn btn-default" data-sort="event-time">
+								Sort by time
+							</button>
+							
+							<button class="sort btn btn-default" data-sort="event-location">
+								Sort by location
+							</button>
+							
+							<table class="table table-striped">	
 								
-							</div>
+								<thead>
+								
+									<th>Event Name</th>
+									<th>Time</th>
+									<th>Location</th>
+									<th>Category</th>
+									<th>Details</th>
+								
+								</thead>
+								
+								<tbody class="list">
+								
+									<tr>
+										<td class="event-name">Pie Contest</td>
+										<td class="event-time">3:00pm</td>
+										<td class="event-location">MAP 213</td>
+										<td class="event-category">Math</td>
+										<td class="event-details">
+											<a href="" class="btn btn-default">Event Details</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="event-name">Pie Contest</td>
+										<td class="event-time">5:00pm</td>
+										<td class="event-location">MAP 233</td>
+										<td class="event-category">Meth</td>
+										<td class="event-details">
+											<a href="" class="btn btn-default">Event Details</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="event-name">Pie Contest</td>
+										<td class="event-time">4:00pm</td>
+										<td class="event-location">MAP 253</td>
+										<td class="event-category">Matth</td>
+										<td class="event-details">
+											<a href="" class="btn btn-default">Event Details</a>
+										</td>
+									</tr>
+								
+								</tbody>
+							
+							</table>
+							
 						</div>
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event
-							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
-								
-							</div>
-						</div>
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event
-							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
-								
-							</div>
-						</div>
-					
 					</div>
 					
 					<div class="col-sm-4">
