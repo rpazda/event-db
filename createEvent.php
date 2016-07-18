@@ -80,34 +80,40 @@
 										<li><a href="#test">Separated link</a></li>
 									</ul>
 								</div>
+								<h4>     or</h4>
+								<div class="well">
 								
-								<div id="map">
+									<div class="form-group">
+										<label for="newEvent-name">New Event Location Name</label>
+										<input type="text" class="form-control" id="newEvent-newLocation" placeholder="Event Location Name">
+									</div>
+								
+									<div id="map">
+									</div>
+									
+									<script>
+										function initMap() {
+											
+											var uniLocation = {lat: 28.5973432, lng: -81.1911728};
+											//change to center on uni latlong
+
+											var mapDiv = document.getElementById('map');
+											var map = new google.maps.Map(mapDiv, {
+												center: uniLocation,
+												zoom: 11
+											});
+											marker = new google.maps.Marker({position: uniLocation, map: map});
+											google.maps.event.addListener(map, 'click', function(event) {
+												marker.setMap(null)
+												marker = new google.maps.Marker({position: event.latLng, map: map});
+												position = marker.getPosition();
+											});
+										}
+									</script>
+									<script async defer
+										src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4J3mXl9mgqJGlQ1YgbDgqRMEbJDOc8pg&callback=initMap">
+									</script>
 								</div>
-								
-								<script>
-									function initMap() {
-										
-										var uniLocation = {lat: 28.5973432, lng: -81.1911728};
-										//change to center on uni latlong
-
-										var mapDiv = document.getElementById('map');
-										var map = new google.maps.Map(mapDiv, {
-											center: uniLocation,
-											zoom: 11
-										});
-										marker = new google.maps.Marker({position: uniLocation, map: map});
-										google.maps.event.addListener(map, 'click', function(event) {
-											marker.setMap(null)
-											marker = new google.maps.Marker({position: event.latLng, map: map});
-											position = marker.getPosition();
-											$('#test').append(position.toString()); 
-										});
-									}
-								</script>
-								<script async defer
-									src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4J3mXl9mgqJGlQ1YgbDgqRMEbJDOc8pg&callback=initMap">
-								</script>
-
 							</div>
 							
 							<div class="form-group">
