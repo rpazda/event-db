@@ -1,8 +1,10 @@
 $(document).ready( function(){
-	
-	var eventData =
-	
-	var eventList = new List('', eventData);
+
+	var options = {
+	  valueNames: [ 'event-name', 'event-time', 'event-location', 'event-category' ]
+	};
+
+	var userList = new List('events-list', options);
 	
 	
 });
