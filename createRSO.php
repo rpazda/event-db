@@ -84,6 +84,10 @@
 								<input type="text" class="form-control" id="newRSO-member-4" placeholder="Member Email">
 							</div>
 							
+							<div class="form-group">
+								<input type="text" class="form-control" id="newRSO-member-5" placeholder="Member Email">
+							</div>
+							
 						</div>	
 					</div>
 				</div>
