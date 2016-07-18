@@ -1,41 +1,30 @@
-<!doctype html>
-<html>
-
-
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<div class="container-fluid">
 		
-		<script type="text/javascript" src="jquery-3.0.0.js"></script>
-		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://use.fontawesome.com/808114f81f.js"></script>
-		<script src="content/scripts/login.js"></script>
-	</head>
+	<div class="row" style="background-color: #2db9b9; height:80px; border-bottom: thick solid #279e9e; 
+				border-right: thick solid #279e9e; 
+				margin-bottom: 15px;">
 	
-	<body>	
-	
-		<div class="container-fluid">
+		<div class="col-md-12" style=" height: 100%;">
 		
-			<div class="row">
-			
-				<div class="col-md-12">
-				
-					<div id="header" class="row" style="background-color: #2db9b9; height:80px; margin-bottom: 15px;">
+			<div id="header" class="row" >
 
-						<div class="col-md-8">
-							<h1>University Events</h1>
-						</div>
-						
-						<div class="col-md-4" id="current-user-listing">
-						</div>
-					
-					</div>
+				<div class="" style="color: white; margin-top:10px; margin-left:10px; width: 400px;">
+					<h1><i class="fa fa-calendar" aria-hidden="true"></i> University Events  </h1>
 				
 				</div>
+					
+				<p style="float: right; color:white; margin-top:20px; margin-right:20px;" id="current-user-listing">
+					User: 
+					<?php>
+						$userName = $_SESSION['userLoggedIn'];
+						echo $userName;
+					?>
+				</p>
 			
 			</div>
 		
 		</div>
-
-	</body>
 	
-</html>
+	</div>
+
+</div>

@@ -14,7 +14,9 @@ session_start();
 	</head>
 	
 	<body>
-	
+		<?php
+			include_once('header.php');
+		?>	
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
@@ -24,7 +26,6 @@ session_start();
 						</div>
 						<form method='POST' />
 							<div class="panel-body">
-								<form method='POST' />
 								<?php
 									
 									$user = 'root';
@@ -51,7 +52,7 @@ session_start();
 										  ";
 										  $i++;
 										  }
-										  echo "<button class='btn btn-default' type='submit' name='login-button'>Approve RSO</button>";
+										  echo "<button class='btn btn-default' type='submit' name='approveRSO'>Approve RSO</button>";
 									}
 									else {
 										echo " There are no pending RSO requests!<br>";
@@ -72,6 +73,7 @@ session_start();
 									}
 								}
 								if($result)
+									mysqli_close($link);
 									header('Location: approvalQueue.php');
 							}
 						?>
@@ -85,13 +87,64 @@ session_start();
 						<div class="panel-heading">
 							Approve Events
 						</div>
-						
-						<div class="panel-body">
-						
-						</div>
+						<form method='POST' />
+							<div class="panel-body">
+								<?php
+									
+									$user = 'root';
+									$password = '';
+									$db = 'databaseproject';
+									$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+									
+									$sqlQuery = "SELECT * FROM `events` WHERE `isApproved` = 0";
+									$result = mysqli_query($link, $sqlQuery);
+									
+									if (mysqli_num_rows($result) > 0) {
+										// output data of each row
+										$i = 0;
+										while($row = mysqli_fetch_array($result)) {
+											$eventName = $row["eventName"];
+											$eventUniversity = $row["universityName"];
+										  echo "
+											<tr>
+											  <td>
+												<input type='checkbox' name='chk_group[]' value='$eventName' />  $eventName from $eventUniversity<br />
+											  </td>
+											</tr>
+										  ";
+										  $i++;
+										  }
+										  echo "<button class='btn btn-default' type='submit' name='approveEvent'>Approve Event</button>";
+									}
+									else {
+										echo " There are no pending RSO requests!<br>";
+									}
+								?>
+							</div>
+						</form>
+						<?php
+							if (isset($_POST['chk_group'])) {
+								$optionArray = $_POST['chk_group'];
+								for ($i=0; $i<count($optionArray); $i++) {
+									$sqlQuery = "UPDATE `events` SET `isApproved`= 1 WHERE `eventName` = '$optionArray[$i]'";
+									$result = mysqli_query($link, $sqlQuery);
+									if($result){
+										echo "<span>";
+										echo $optionArray[$i]." has been approved!<br />";
+										echo "</span>";
+									}
+								}
+								if($result)
+									mysqli_close($link);
+									header('Location: approvalQueue.php');
+							}
+						?>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php
+			include_once('footer.php');
+		?>
 	</body>
 </html>

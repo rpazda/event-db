@@ -15,7 +15,9 @@ session_start();
 	</head>
 	
 	<body>
-	
+		<?php
+			include_once('header.php');
+		?>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
@@ -84,5 +86,8 @@ session_start();
 				</div>
 			</div>
 		</div>
+		<?php
+			include_once('footer.php');
+		?>
 	</body>
 </html>
