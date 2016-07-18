@@ -6,20 +6,18 @@ session_start();
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
-		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="jquery-3.0.0.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
 		<script src="content/scripts/login.js"></script>
 	</head>
 	
 	<body>	
-
-		<div id="header"></div>
 	
+		<div id="header"></div>
 		<?php
 			include_once('header.php');
 		?>
-
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-2">
@@ -30,7 +28,6 @@ session_start();
 						</div>
 						
 						<div class="panel-body">
-
 							<form method="POST" />
 								<div class="form-group">
 									<label for="login-id">User ID</label>
@@ -54,22 +51,17 @@ session_start();
 									$sqlQuery = "SELECT* FROM `users` WHERE `uid` = '$inputUser'";
 									$result = mysqli_query($link, $sqlQuery);
 									$UID = mysqli_fetch_array($result);
-									echo $inputUser;
-									echo "<br>";
-									echo $inputPassword;
-									echo "<br>";
-									echo $UID['uid'];
-									echo "<br>";
-									echo $UID['userPassword'];
 									
 									if ($UID['userPassword'] == $inputPassword){
 										if($UID['userType'] == 0){
 											$_SESSION['userLoggedIn'] = $inputUser;
-											//Send to the admin home page
+											mysqli_close($link);
+											header('Location: adminHome.php');
 										}
 										elseif($UID['userType'] == 2){
 											$_SESSION['userLoggedIn'] = $inputUser;
-											//send to the public events page
+											mysqli_close($link);
+											header('Location: home.php');
 										}
 										else{
 											$_SESSION['userLoggedIn'] = $inputUser;
@@ -90,20 +82,6 @@ session_start();
 								else{}
 							?>
 
-							<form>
-								<div class="form-group">
-									<label for="login-id">User ID</label>
-									<input type="email" class="form-control" id="login-id" placeholder="University Email">
-								</div>
-								<div class="form-group">
-									<label for="login-password">Password</label>
-									<input type="password" class="form-control" id="login-password">
-								</div>
-								
-								<button class="btn btn-default" type="submit" id="login-button">Login</button>
-								
-							</form>
-
 						</div>	
 						
 					</div>
@@ -117,7 +95,6 @@ session_start();
 						</div>
 						
 						<div class="panel-body">
-
 							<form method="POST" />
 								<div class="form-group">
 									<label for="newUser-name">Name</label>
@@ -141,6 +118,7 @@ session_start();
 											}
 											echo "</select>";
 											echo"</div>";
+											mysqli_close($link);
 										?>
 								</div>
 
@@ -173,6 +151,7 @@ session_start();
 									if ($result)
 									{
 										echo "An account has been resgistered!";
+										echo "<br>";
 										echo "Your username is $inputUser";
 									}
 									else{
@@ -188,54 +167,15 @@ session_start();
 							else if (!empty($inputPassword) && !empty($inputUniversity) && !empty($inputName))
 								echo "Please enter your school email address.";
 							?>
-							
-							<div class="form-group">
-								<label for="newUser-name">Name</label>
-								<input type="text" class="form-control" id="newUser-name" placeholder="Student Name">
-							</div>
-							
-							<div class="form-group">
-								<label for="newUser-university">University</label>
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" id="university-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										University
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="university-select">
-										<li><a href="#">Action</a></li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-										<li role="separator" class="divider"></li>
-										<li><a href="#">Separated link</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="newUser-id">Email</label>
-								<input type="email" class="form-control" id="newUser-id" placeholder="University Email">
-							</div>
-							
-							<div class="form-group">
-								<label for="newUser-password">Password</label>
-								<input type="password" class="form-control" id="newUser-password">
-							</div>
-							
 						</div>	
-						
 					</div>	
 					
 				</div>
-				
 			</div>
-			
 		</div>
-
-		
 		<?php
 			include_once('footer.php');
 		?>
-	
 	</body>
 	
 </html>

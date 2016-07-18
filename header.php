@@ -15,6 +15,10 @@
 					
 				<p style="float: right; color:white; margin-top:20px; margin-right:20px;" id="current-user-listing">
 					User: 
+					<?php>
+						$userName = $_SESSION['userLoggedIn'];
+						echo $userName;
+					?>
 				</p>
 			
 			</div>
