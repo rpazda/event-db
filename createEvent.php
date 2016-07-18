@@ -11,6 +11,10 @@
 	</head>
 	
 	<body>
+		
+		<?php
+			include_once "header.php";
+		?>
 	
 		<div class="container-fluid">
 		
@@ -106,8 +110,19 @@
 				</div>
 				
 			</div>
+			
+			<div class="row">
+				<center>
+					<a href="home.php" class="btn btn-primary">Back to Events</a>
+				</center>
+			</div>
 		
 		</div>
 		
+		<?php
+			include_once "footer.php";
+		?>
+		
 	</body>
+	
 </html>

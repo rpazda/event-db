@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <?php
 session_start();
 ?>
 
+=======
+>>>>>>> refs/remotes/origin/Richard-UpdatePages
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
@@ -14,8 +17,15 @@ session_start();
 	
 	<body>	
 	
+<<<<<<< HEAD
 		<div id="header"></div>
 	
+=======
+		<?php
+			include_once('header.php');
+		?>
+
+>>>>>>> refs/remotes/origin/Richard-UpdatePages
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-2">
@@ -26,6 +36,7 @@ session_start();
 						</div>
 						
 						<div class="panel-body">
+<<<<<<< HEAD
 							<form method="POST" />
 								<div class="form-group">
 									<label for="login-id">User ID</label>
@@ -85,6 +96,21 @@ session_start();
 								else{}
 							?>
 
+=======
+							<form>
+								<div class="form-group">
+									<label for="login-id">User ID</label>
+									<input type="email" class="form-control" id="login-id" placeholder="University Email">
+								</div>
+								<div class="form-group">
+									<label for="login-password">Password</label>
+									<input type="password" class="form-control" id="login-password">
+								</div>
+								
+								<button class="btn btn-default" type="submit" id="login-button">Login</button>
+								
+							</form>
+>>>>>>> refs/remotes/origin/Richard-UpdatePages
 						</div>	
 						
 					</div>
@@ -98,6 +124,7 @@ session_start();
 						</div>
 						
 						<div class="panel-body">
+<<<<<<< HEAD
 							<form method="POST" />
 								<div class="form-group">
 									<label for="newUser-name">Name</label>
@@ -168,12 +195,54 @@ session_start();
 							else if (!empty($inputPassword) && !empty($inputUniversity) && !empty($inputName))
 								echo "Please enter your school email address.";
 							?>
+=======
+							
+							<div class="form-group">
+								<label for="newUser-name">Name</label>
+								<input type="text" class="form-control" id="newUser-name" placeholder="Student Name">
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-university">University</label>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" id="university-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										University
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="university-select">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-id">Email</label>
+								<input type="email" class="form-control" id="newUser-id" placeholder="University Email">
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-password">Password</label>
+								<input type="password" class="form-control" id="newUser-password">
+							</div>
+							
+>>>>>>> refs/remotes/origin/Richard-UpdatePages
 						</div>	
 					</div>	
 					
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
+=======
+		
+		<?php
+			include_once('footer.php');
+		?>
+>>>>>>> refs/remotes/origin/Richard-UpdatePages
 	
 	</body>
 	
