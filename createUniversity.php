@@ -1,3 +1,7 @@
+<?php
+	include_once('header.php');
+?>
+
 <html>
 
 	<head>
@@ -50,6 +54,26 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row">
+			
+				<div class="col-md-6 col-md-offset-3">
+					<center>
+						<p>
+							<a href="adminhome.php" class="btn btn-default">Back to Super Admin Control Panel</a>
+						</p>
+					</center>
+					
+				</div>
+			
+			</div>
+			
 		</div>
+		
 	</body>
+	
 </html>
+
+<?php
+	include_once('footer.php');
+?>

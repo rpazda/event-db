@@ -1,134 +1,100 @@
-
-
 <html>
 
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
+		<script type="text/javascript" src="jquery-3.0.0.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
-		<script src="content/list.min.js"></script>
-
-		
+		<script src="content/scripts/login.js"></script>
 	</head>
 	
-	<body>
-		<?php
-			include_once "header.php";
-		?>
+	<body>	
 	
+		<?php
+			include_once('header.php');
+		?>
+
 		<div class="container-fluid">
-			
 			<div class="row">
-				
-				<div class="col-md-8 col-md-offset-2">
-					
-					<ul class="nav nav-tabs">
-						<li role="presentation" class="active">
-							<a href="#">Day View</a>
-						</li>
-						<li role="presentation">
-							<a href="#">Week View</a>
-						</li>
-						<li role="presentation">
-							<a href="#">Month View</a>
-						</li>
-						<li role="presentation">
-							<a href="#">Year View</a>
-						</li>
-						<li role="presentation">
-							<a href="#">Upcoming</a>
-						</li>
-					</ul>
-					
-					<div class="col-sm-8" id="event-pane">
-					
-						<h2>Events</h2>
+				<div class="col-md-4 col-md-offset-2">
+					<div class="panel panel-primary">	
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event
-							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
-								
-							</div>
+						<div class="panel-heading">
+							Existing Users
 						</div>
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event
-							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
+						<div class="panel-body">
+							<form>
+								<div class="form-group">
+									<label for="login-id">User ID</label>
+									<input type="email" class="form-control" id="login-id" placeholder="University Email">
+								</div>
+								<div class="form-group">
+									<label for="login-password">Password</label>
+									<input type="password" class="form-control" id="login-password">
+								</div>
 								
-							</div>
-						</div>
+								<button class="btn btn-default" type="submit" id="login-button">Login</button>
+								
+							</form>
+						</div>	
 						
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Example Event
-							</div>
-							<div class="panel-body">
-								<p>
-									at <b>00:00am</b> in ABC room 000
-								</p>
-								<p>
-									Join us for nothing never as we celebrate things not happening
-								</p>
-								
-							</div>
-						</div>
-					
 					</div>
-					
-					<div class="col-sm-4">
-					
-						<h2>Calendar</h2>
-						
-						<div class="panel panel-default" style="height: 200px;">
-							<div class="panel-body">Calendar</div>
-						</div>
-						
-						<h3>Filter by RSO</h3>
-						
-							<ul style="list-style-type: none;">
-							
-								<li>
-									<i class="fa fa-flask"></i>&nbsp<a href="#">Chemistry Club</a>
-								</li>
-								
-								<li>
-									<i class="fa fa-music"></i>&nbsp<a href="#">Orchestra</a>
-								</li>
-								
-								<li>
-									<i class="fa fa-sign-language"></i>&nbsp<a href="#">American Sign Language Club</a>
-								</li>
-							
-							</ul>
-					
-					</div>
-				
 				</div>
 				
+				<div class="col-md-4">
+					
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							New Users
+						</div>
+						
+						<div class="panel-body">
+							
+							<div class="form-group">
+								<label for="newUser-name">Name</label>
+								<input type="text" class="form-control" id="newUser-name" placeholder="Student Name">
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-university">University</label>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" id="university-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										University
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="university-select">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-id">Email</label>
+								<input type="email" class="form-control" id="newUser-id" placeholder="University Email">
+							</div>
+							
+							<div class="form-group">
+								<label for="newUser-password">Password</label>
+								<input type="password" class="form-control" id="newUser-password">
+							</div>
+							
+						</div>	
+					</div>	
+					
+				</div>
 			</div>
-	
 		</div>
-	
+		
 		<?php
-			include_once "footer.php";
+			include_once('footer.php');
 		?>
+	
 	</body>
 	
 </html>
