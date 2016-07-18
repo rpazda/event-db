@@ -67,6 +67,7 @@ session_start();
 									if($result){
 										$sqlQuery = "INSERT INTO `universities` (`universityName`, `locationName`, `description`, `domain`) VALUES ('$universityName', '$universityName', '$universityDescription', 'blah')";
 										$result = mysqli_query($link, $sqlQuery);
+										mysqli_close($link);
 										if($result)
 											echo "University $universityName was added";
 										else
