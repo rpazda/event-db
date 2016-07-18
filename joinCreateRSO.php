@@ -1,14 +1,15 @@
-<html>
+<?php
+session_start();
+?>
 
+<html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
 		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
-		
 		<script src="content/scripts/joinCreateRSO.js"></script>
-
 	</head>
 	
 	<body>
@@ -24,9 +25,22 @@
 						<div class="panel-heading">
 							Join RSOs 
 						</div>
-						
+						<?php
+							$user = 'root';
+							$password = '';
+							$db = 'databaseproject';
+							$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+							$inputUser = $_SESSION['userLoggedIn'];
+							
+							$sqlQuery = "SELECT universityName FROM `users` WHERE `uid` = '$inputUser'";
+							$result = mysqli_query($link, $sqlQuery);
+							$userInfo = mysqli_fetch_array($result);
+							$userUniversity = userInfo['universityName'];
+							
+							$sqlQuery = "SELECT rsoName FROM `universities`, WHERE `uid` = '$inputUser'";
+							$sqlQuery = "SELECT universities.rsoName FROM universities, rsomembers WHERE (rsomembers.uid != '$userID') AND (universities.universityName = '$userUniversity')" ;
+						?>
 						<div class="panel-body">
-						
 						</div>
 					</div>
 				</div>
@@ -89,7 +103,7 @@
 											RSO Initial Members
 										</div>
 										<div class="panel-body">
-											Creating a new RSO requires six (6) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
+											Creating a new RSO requires five (5) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
 										</div>
 									</div>
 								</div>
@@ -115,10 +129,6 @@
 							
 							<div class="form-group">
 								<input type="text" class="form-control" id="newRSO-member-4" placeholder="Member Email">
-							</div>
-							
-							<div class="form-group">
-								<input type="text" class="form-control" id="newRSO-member-5" placeholder="Member Email">
 							</div>
 							
 						</div>	
