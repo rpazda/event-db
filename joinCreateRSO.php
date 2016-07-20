@@ -135,7 +135,7 @@ session_start();
 												RSO Initial Members
 											</div>
 											<div class="panel-body">
-												Creating a new RSO requires five (5) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
+												Creating a new RSO requires six (6) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
 											</div>
 										</div>
 									</div>

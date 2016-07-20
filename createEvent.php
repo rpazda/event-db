@@ -84,6 +84,9 @@ session_start();
 							
 							<div class="form-group">
 								<label for="newEvent-location">Event Location</label>
+								
+								<div class="well-sm">Select a location from the dropdown or select a new location on the map below</div>
+								
 								<?php
 									$sqlQuery = "SELECT `locationName` FROM `locations` WHERE 1";
 									$result = mysqli_query($link, $sqlQuery);

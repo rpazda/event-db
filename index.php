@@ -15,10 +15,11 @@ session_start();
 	
 	<body>	
 	
-		<div id="header"></div>
+		<div id="header">
 		<?php
 			include_once('header.php');
 		?>
+		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-2">
