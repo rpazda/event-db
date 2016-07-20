@@ -41,7 +41,7 @@
 								<th>Category</th>
 								<th>Details</th>
 							</thead>
-							<tbody class="list">
+							<tbody class="public-events-list">
 								<?php
 									$user = 'root';
 									$password = '';

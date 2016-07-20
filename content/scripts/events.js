@@ -13,7 +13,7 @@ $(document).ready( function(){
 	var userList = new List('private-events-list', options);
 	
 	var options3 = {
-	  valueNames: [ 'eventName', 'rsoName', 'eventTime', 'locationName', 'event-category' ]
+	  valueNames: [ 'eventName', 'rsoName', 'eventTime', 'locationName', 'category' ]
 	};
 
 	var userList = new List('RSO-events-list', options);

@@ -64,7 +64,7 @@
 								<th>Category</th>
 								<th>Details</th>
 							</thead>
-							<tbody class="list">
+							<tbody class="public-events-list">
 								<?php
 									$user = 'root';
 									$password = '';
@@ -126,7 +126,7 @@
 								<th>Category</th>
 								<th>Details</th>
 							</thead>
-							<tbody class="list">
+							<tbody class="private-events-list">
 								<?php
 									$user = 'root';
 									$password = '';
@@ -188,7 +188,7 @@
 								<th>Category</th>
 								<th>Details</th>
 							</thead>
-							<tbody class="list">
+							<tbody class="RSO-events-list">
 								<?php
 									$user = 'root';
 									$password = '';
