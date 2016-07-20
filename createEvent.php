@@ -63,10 +63,10 @@ session_start();
 							</div>
 							
 							<div class="form-group">
-								<label for="rso">RSO that your an Admin for : </label>
+								<label for="rso">RSO you are Admin of : </label>
 								<?php
 									echo "<div class='dropdown'>";
-									echo"<select name='rsoName'>";
+									echo"<select class='btn btn-default' name='rsoName'>";
 									echo "<option size =100 ></option>";
 									while($row = mysqli_fetch_array($result)){
 										echo "<option value='".$row['rsoName']."'>".$row['rsoName']."</option>";
@@ -91,7 +91,7 @@ session_start();
 									$sqlQuery = "SELECT `locationName` FROM `locations` WHERE 1";
 									$result = mysqli_query($link, $sqlQuery);
 									echo "<div class='dropdown'>";
-									echo"<select name='locationName'>";
+									echo"<select class='btn btn-default' name='locationName'>";
 									echo "<option size =100 ></option>";
 									while($row = mysqli_fetch_array($result)){
 										echo "<option value='".$row['locationName']."'>".$row['locationName']."</option>";
@@ -99,6 +99,8 @@ session_start();
 									echo "</select>";
 									echo"</div>";
 								?>
+								
+								<h4 style="margin-left: 20px;">or</h4>
 								
 								<div class="well">
 								
@@ -146,7 +148,7 @@ session_start();
 								$sqlQuery = "SELECT * FROM `eventcategory` WHERE 1";
 								$result = mysqli_query($link, $sqlQuery);
 								echo "<div class='dropdown'>";
-								echo"<select name='eventcategory'>";
+								echo"<select class='btn btn-default' name='eventcategory'>";
 								echo "<option size =100 ></option>";
 								while($row = mysqli_fetch_array($result)){
 									echo "<option value='".$row['eventType']."'>".$row['eventType']."</option>";
