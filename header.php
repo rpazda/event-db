@@ -8,17 +8,30 @@
 		
 			<div id="header" class="row" >
 
-				<div class="" style="color: white; margin-top:10px; margin-left:10px; width: 400px;">
+				<div class="col-md-6" style="color: white;">
 					<h1><i class="fa fa-calendar" aria-hidden="true"></i> University Events  </h1>
-				
+				 
 				</div>
 					
-				<p style="float: right; color:white; margin-top:20px; margin-right:20px;" id="current-user-listing">
-					User: 
-					<?php>
-						$userName = $_SESSION['userLoggedIn'];
-						echo $userName;
-					?>
+				<div class="col-md-6"  id="current-user-listing">
+					
+					<div style="float: right; color:white; margin-top:10px;">
+						User: 
+						<?php
+							$userName = $_SESSION['userLoggedIn'];
+							//if($userName != null){	//need to add logic and uncomment
+								echo $userName;
+							//}
+						?>
+						<?php
+						//if(USERLOGGEDIN){		//need to add logic and uncomment
+						?>
+							<button class="btn btn-primary" type="submit" name="logout-button" style="margin-left:10px;">Log Out</button>
+						<?php
+						//}
+						?>
+					</div>	
+					
 				</p>
 			
 			</div>

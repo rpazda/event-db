@@ -6,9 +6,10 @@ session_start();
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
-		<script type="text/javascript" src="jquery-3.0.0.js"></script>
+		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
+		
 		<script src="content/scripts/login.js"></script>
 	</head>
 	
@@ -38,7 +39,14 @@ session_start();
 									<input type="password" class="form-control" name="login-password">
 								</div>
 								
-								<button class="btn btn-default" type="submit" name="login-button">Login</button>								
+								<div class="col-sm-6">
+									<button class="btn btn-primary" type="submit" name="login-button">Login</button>
+								</div>
+								<div class="col-sm-6">
+									<a style="float:right;" class="btn btn-default" href="guestHome.php" name="guest-button">View Public Events</a>
+								</div>
+								
+								
 							</form>
 							<?php
 								if(!empty($_POST['login-id']) && !empty($_POST['login-password'])){

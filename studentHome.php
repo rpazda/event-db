@@ -12,82 +12,10 @@
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
 
 		<script src="content/list.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="content/list.css">
 		<script src="http://listjs.com/no-cdn/list.js"></script>
 		<script src="content/scripts/events.js"></script>
 		
-		<script>
-		
-			.list {
-			  font-family:sans-serif;
-			}
-			td {
-			  padding:10px; 
-			  border:solid 1px #eee;
-			}
-
-			input {
-			  border:solid 1px #ccc;
-			  border-radius: 5px;
-			  padding:7px 14px;
-			  margin-bottom:10px
-			}
-			input:focus {
-			  outline:none;
-			  border-color:#aaa;
-			}
-			.sort {
-			  padding:8px 30px;
-			  border-radius: 6px;
-			  border:none;
-			  display:inline-block;
-			  color:#fff;
-			  text-decoration: none;
-			  background-color: #28a8e0;
-			  height:30px;
-			}
-			.sort:hover {
-			  text-decoration: none;
-			  background-color:#1b8aba;
-			}
-			.sort:focus {
-			  outline:none;
-			}
-			.sort:after {
-			  display:inline-block;
-			  width: 0;
-			  height: 0;
-			  border-left: 5px solid transparent;
-			  border-right: 5px solid transparent;
-			  border-bottom: 5px solid transparent;
-			  content:"";
-			  position: relative;
-			  top:-10px;
-			  right:-5px;
-			}
-			.sort.asc:after {
-			  width: 0;
-			  height: 0;
-			  border-left: 5px solid transparent;
-			  border-right: 5px solid transparent;
-			  border-top: 5px solid #fff;
-			  content:"";
-			  position: relative;
-			  top:4px;
-			  right:-5px;
-			}
-			.sort.desc:after {
-			  width: 0;
-			  height: 0;
-			  border-left: 5px solid transparent;
-			  border-right: 5px solid transparent;
-			  border-bottom: 5px solid #fff;
-			  content:"";
-			  position: relative;
-			  top:-4px;
-			  right:-5px;
-}
-		
-		</script>
 	</head>
 	<body>
 		<?php
@@ -97,13 +25,17 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<h2>Public Events </h2>
+					<div class="col-md-6">	
+						<h2>Public Events </h2>
+					</div>
+					<div class="col-md-6">	
+						<div class="btn-group" role="group" aria-label="..." style="float:right">
+							<a href="joinCreateRSO.php" class="btn btn-default">Join/Create RSO</a>
+							<a href="createEvent.php" class="btn btn-default">Create Event</a>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-2">
-						<div class="btn-group" role="group" aria-label="..." style="float:right">
-                        <a href="joinCreateRSO.php" class="btn btn-default">Join/Create RSO</a>
-							<a href="createEvent.php" class="btn btn-default">Create Event</a>
-                    </div>
 				</div>
 			</div>
 			<div class="row">
@@ -143,10 +75,10 @@
 									mysqli_close($link);
 									while($row = mysqli_fetch_array($result)){
 										echo "<tr>";
-										echo "<td class='".$row['eventName']."'>".$row['eventName']."</td>";
-										echo "<td class='".$row['eventTime']."'>".$row['eventTime']."</td>";
-										echo "<td class='".$row['locationName']."'>".$row['locationName']."</td>";
-										echo "<td class='".$row['category']."'>".$row['category']."</td>";
+										echo "<td class='eventName'>".$row['eventName']."</td>";
+										echo "<td class='eventTime'>".$row['eventTime']."</td>";
+										echo "<td class='locationName'>".$row['locationName']."</td>";
+										echo "<td class='category'>".$row['category']."</td>";
 										echo "<td class='event-details'>";
 										$_SESSION['eventName'] = $row['eventName'];
 										echo "<a href ='eventDetails.php' class='btn btn-default'>Event Details</a>";
@@ -205,10 +137,10 @@
 									mysqli_close($link);
 									while($row = mysqli_fetch_array($result)){
 										echo "<tr>";
-										echo "<td class='".$row['eventName']."'>".$row['eventName']."</td>";
-										echo "<td class='".$row['eventTime']."'>".$row['eventTime']."</td>";
-										echo "<td class='".$row['locationName']."'>".$row['locationName']."</td>";
-										echo "<td class='".$row['category']."'>".$row['category']."</td>";
+										echo "<td class='eventName'>".$row['eventName']."</td>";
+										echo "<td class='eventTime'>".$row['eventTime']."</td>";
+										echo "<td class='locationName'>".$row['locationName']."</td>";
+										echo "<td class='category'>".$row['category']."</td>";
 										echo "<td class='event-details'>";
 										echo "<a href='eventDetails.php' class='btn btn-default'>Event Details</a>";
 										echo "</td>";
@@ -269,11 +201,11 @@
 									{
 										while($row = mysqli_fetch_array($result)){
 											echo "<tr>";
-											echo "<td class='".$row['eventName']."'>".$row['eventName']."</td>";
-											echo "<td class='".$row['rsoName']."'>".$row['rsoName']."</td>";
-											echo "<td class='".$row['eventTime']."'>".$row['eventTime']."</td>";
-											echo "<td class='".$row['locationName']."'>".$row['locationName']."</td>";
-											echo "<td class='".$row['category']."'>".$row['category']."</td>";
+											echo "<td class='eventName'>".$row['eventName']."</td>";
+											echo "<td class='rsoName'>".$row['rsoName']."</td>";
+											echo "<td class='eventTime'>".$row['eventTime']."</td>";
+											echo "<td class='locationName'>".$row['locationName']."</td>";
+											echo "<td class='category'>".$row['category']."</td>";
 											echo "<td class='event-details'>";
 											echo "<a href='eventDetails.php' class='btn btn-default'>Event Details</a>";
 											echo "</td>";
