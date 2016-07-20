@@ -111,7 +111,7 @@ session_start();
 			</div>
 			
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Approve Events
@@ -194,6 +194,11 @@ session_start();
 						?>
 					</div>
 				</div>
+			</div>
+			<div class='row'>
+				<center>
+					<a class="btn btn-primary" href="adminHome.php">Back to Admin Control Panel</a>
+				</center>
 			</div>
 		</div>
 		<?php
