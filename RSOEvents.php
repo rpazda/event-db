@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
+?>
+
+
 <html>
 
 	<head>
