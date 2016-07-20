@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
 ?>
 
 <html>
@@ -19,7 +21,7 @@
 	</head>
 	<body>
 		<?php
-			include_once "header.php";
+			include_once("header.php");
 		?>
 
 		<div class="container-fluid">
