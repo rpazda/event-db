@@ -33,6 +33,20 @@
 			<div class="row">
 				<div class="col-md-12 col-md-offset-2">
 					<div class="col-sm-8" id="event-pane" style="margin-top: 15px;">
+						<div class="input-group" style="margin-bottom:10px;">
+							<input class="search form-control" placeholder="Search" />
+						</div>
+						<button class="sort btn btn-default" data-sort="eventName">
+							Sort by name
+						</button>
+
+						<button class="sort btn btn-default" data-sort="eventTime">
+							Sort by time
+						</button>
+
+						<button class="sort btn btn-default" data-sort="locationName">
+							Sort by location
+						</button>
 						<table class="table table-striped">
 							<thead>
 								<th>Event Name</th>
@@ -66,6 +80,11 @@
 						</table>
 					</div>
 				</div>
+			</div>
+			<div class='row'>
+				<center>
+					<a class="btn btn-primary" href="index.php">Back to Login Page</a>
+				</center>
 			</div>
 		</div>
 	</div>
