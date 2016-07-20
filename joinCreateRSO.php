@@ -46,12 +46,26 @@ session_start();
 									// output data of each row
 									$i = 0;
 									echo "<br>";
+									echo "<table class='table table-hover'>
+												<thead>
+													<th>
+														Join
+													</th>
+													<th>
+														RSO Name
+													</th>
+												</thead>
+												<tbody>
+										";
 									while($row = mysqli_fetch_array($result)) {
 										$rsoName = $row["rsoName"];
 									  echo "<center>
 												<tr>
 												  <td>
-													<input type='checkbox' name='chk_group[]' value='$rsoName' />  $rsoName <br />
+													<input type='checkbox' name='chk_group[]' value='$rsoName' />  
+												  </td>
+												  <td>
+													$rsoName
 												  </td>
 												</tr>
 											</center>
@@ -59,6 +73,10 @@ session_start();
 									  $i++;
 									  }
 									  echo "<br>";
+									  echo "
+												</tbody>
+											</table>
+										  ";
 									  echo "<center><button class='btn btn-default' type='submit' name='joinRSO'>Join RSO</button></center>";
 								}
 								else {
@@ -112,7 +130,7 @@ session_start();
 										$sqlQuery = "SELECT `universityName` FROM `universities` WHERE 1";
 										$result = mysqli_query($link, $sqlQuery);
 										echo "<div class='dropdown'>";
-										echo"<select name='UniversityName'>";
+										echo"<select class='btn btn-default 'name='UniversityName'>";
 										echo "<option size =100 ></option>";
 										while($row = mysqli_fetch_array($result)){
 											echo "<option value='".$row['universityName']."'>".$row['universityName']."</option>";
