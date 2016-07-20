@@ -1,5 +1,5 @@
 <?php
-session_start();
+	session_start();
 ?>
 
 <html>
@@ -16,8 +16,11 @@ session_start();
 	<body>	
 	
 		<div id="header">
+		<div id="header"></div>
 		<?php
 			include_once('header.php');
+			$_SESSION['current'] = false;
+			include_once ('header.php');
 		?>
 		</div>
 		<div class="container-fluid">
@@ -64,6 +67,7 @@ session_start();
 									if ($UID['userPassword'] == $inputPassword){
 										if($UID['userType'] == 0){
 											$_SESSION['userLoggedIn'] = $inputUser;
+											$_SESSION['current'] = true;
 											mysqli_close($link);
 											header('Location: adminHome.php');
 										}
@@ -74,6 +78,7 @@ session_start();
 										}
 										else{
 											$_SESSION['userLoggedIn'] = $inputUser;
+											$_SESSION['current'] = true;
 											mysqli_close($link);
 											header('Location: studentHome.php');
 										}
