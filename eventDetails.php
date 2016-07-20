@@ -1,6 +1,8 @@
 <?php
-session_start();
-$eventName = $_SESSION['eventName'];
+	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
+	$eventName = $_SESSION['eventName'];
 ?>
 
 <html>
