@@ -15,10 +15,8 @@
 	
 	<body>	
 	
-		<div id="header">
 		<div id="header"></div>
 		<?php
-			include_once('header.php');
 			$_SESSION['current'] = false;
 			include_once ('header.php');
 		?>
