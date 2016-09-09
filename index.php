@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	
+	require_once('DatabaseConnect.php');
+	$db = new Db();
+	$link = $db->_dbConnect(); 
 ?>
 
 <html>
@@ -52,8 +56,7 @@
 							</form>
 							<?php
 								if(!empty($_POST['login-id']) && !empty($_POST['login-password'])){
-									include "DatabaseConnect.php";
-									$link = _dbConnect();
+									//$link = _dbConnect();
 									$inputUser = $_POST['login-id'];
 									$inputPassword = $_POST['login-password'];
 									$sqlQuery = "SELECT* FROM `users` WHERE `uid` = '$inputUser'";
@@ -114,10 +117,8 @@
 								<div class="form-group">
 									<label for="newUser-university">University</label>
 										<?php
-											$user = 'root';
-											$password = '';
-											$db = 'databaseproject';
-											$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+											//include "DatabaseConnect.php";
+											//$link = _dbConnect();
 											$sqlQuery = "SELECT `universityName` FROM `universities` WHERE 1";
 											$result = mysqli_query($link, $sqlQuery);
 											echo "<div class='dropdown'>";
@@ -145,11 +146,11 @@
 							</form>
 							<?php
 								if(!empty($_POST['newUser-id']) && !empty($_POST['newUser-password']) && !empty($_POST['UniversityName']) && !empty($_POST['newUser-name'])){
-									$user = 'root';
+									/* $user = 'root';
 									$password = '';
 									$db = 'databaseproject';
 									$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
-									
+									 */
 									$inputUser = $_POST['newUser-id'];
 									$inputPassword = $_POST['newUser-password'];
 									$inputUniversity = $_POST['UniversityName'];
