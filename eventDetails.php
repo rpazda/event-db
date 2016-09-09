@@ -44,10 +44,8 @@
 						
 						<div class="panel-body">
 							<?php
-								$user = 'root';
-								$password = '';
-								$db = 'databaseproject';
-								$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+								include "DatabaseConnect.php";
+								$link = _dbConnect();
 								$sqlQuery = "SELECT* FROM `events` WHERE `eventTime` = '$eventTime' AND `locationName` = '$locationName'";
 								$result = mysqli_query($link, $sqlQuery);
 								$eventInfo = mysqli_fetch_array($result);

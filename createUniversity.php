@@ -82,10 +82,8 @@
 							</form>
 							<?php
 								if(!empty($_POST['newUniversity-name']) && !empty($_POST['newUniversity-description'])){
-									$user = 'root';
-									$password = '';
-									$db = 'databaseproject';
-									$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+									include "DatabaseConnect.php";
+									$link = _dbConnect();
 									
 									$universityName = $_POST['newUniversity-name'];
 									$universityDescription = $_POST['newUniversity-description'];

@@ -24,10 +24,9 @@
 	<body>
 		<?php
 			include_once "header.php";
-			$user = 'root';
-			$password = '';
-			$db = 'databaseproject';
-			$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+			
+			include "DatabaseConnect.php";
+			$link = _dbConnect();
 			$userID = $_SESSION['userLoggedIn'];
 			$sqlQuery = "SELECT `rsoName` FROM `rsos` WHERE `uid` = '$userID'";
 			$result = mysqli_query($link, $sqlQuery);

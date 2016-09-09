@@ -59,10 +59,8 @@
 							</thead>
 							<tbody class="public-events-list">
 								<?php
-									$user = 'root';
-									$password = '';
-									$db = 'databaseproject';
-									$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+									include "DatabaseConnect.php";
+									$link = _dbConnect();
 									$sqlQuery = "SELECT `eventName`,`locationName`,`eventTime`,`category` FROM `events` WHERE `isPrivate` = 0 AND `isRSO` = 0 AND `isApproved` = 1";
 									$result = mysqli_query($link, $sqlQuery);
 									mysqli_close($link);

@@ -52,10 +52,8 @@
 							</form>
 							<?php
 								if(!empty($_POST['login-id']) && !empty($_POST['login-password'])){
-									$user = 'root';
-									$password = '';
-									$db = 'databaseproject';
-									$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+									include "DatabaseConnect.php";
+									$link = _dbConnect();
 									$inputUser = $_POST['login-id'];
 									$inputPassword = $_POST['login-password'];
 									$sqlQuery = "SELECT* FROM `users` WHERE `uid` = '$inputUser'";

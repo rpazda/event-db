@@ -32,10 +32,8 @@
 						<form method='POST' />
 							<div class="panel-body">
 								<?php
-								$user = 'root';
-								$password = '';
-								$db = 'databaseproject';
-								$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+								include "DatabaseConnect.php";
+								$link = _dbConnect();
 								$inputUser = $_SESSION['userLoggedIn'];
 								$sqlQuery = "SELECT universityName FROM `users` WHERE `uid` = '$inputUser'";
 								$result = mysqli_query($link, $sqlQuery);
