@@ -1,14 +1,15 @@
 <?php
-session_start();
+	session_start();
 ?>
 
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
-		<script type="text/javascript" src="jquery-3.0.0.js"></script>
+		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
+		
 		<script src="content/scripts/login.js"></script>
 	</head>
 	
@@ -16,8 +17,10 @@ session_start();
 	
 		<div id="header"></div>
 		<?php
-			include_once('header.php');
+			$_SESSION['current'] = false;
+			include_once ('header.php');
 		?>
+		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-2">
@@ -38,7 +41,14 @@ session_start();
 									<input type="password" class="form-control" name="login-password">
 								</div>
 								
-								<button class="btn btn-default" type="submit" name="login-button">Login</button>								
+								<div class="col-sm-6">
+									<button class="btn btn-primary" type="submit" name="login-button">Login</button>
+								</div>
+								<div class="col-sm-6">
+									<a style="float:right;" class="btn btn-default" href="guestHome.php" name="guest-button">View Public Events</a>
+								</div>
+								
+								
 							</form>
 							<?php
 								if(!empty($_POST['login-id']) && !empty($_POST['login-password'])){
@@ -55,18 +65,20 @@ session_start();
 									if ($UID['userPassword'] == $inputPassword){
 										if($UID['userType'] == 0){
 											$_SESSION['userLoggedIn'] = $inputUser;
+											$_SESSION['current'] = true;
 											mysqli_close($link);
 											header('Location: adminHome.php');
 										}
 										elseif($UID['userType'] == 2){
 											$_SESSION['userLoggedIn'] = $inputUser;
 											mysqli_close($link);
-											header('Location: home.php');
+											header('Location: guestHome.php');
 										}
 										else{
 											$_SESSION['userLoggedIn'] = $inputUser;
+											$_SESSION['current'] = true;
 											mysqli_close($link);
-											header('Location: home.php');
+											header('Location: studentHome.php');
 										}
 									}
 									else{

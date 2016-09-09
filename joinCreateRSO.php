@@ -1,5 +1,7 @@
 <?php
-session_start();
+	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
 ?>
 
 <html>
@@ -9,6 +11,7 @@ session_start();
 		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
+		
 		<script src="content/scripts/joinCreateRSO.js"></script>
 	</head>
 	
@@ -22,116 +25,213 @@ session_start();
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
+						<form method='POST' />
 						<div class="panel-heading">
 							Join RSOs 
 						</div>
+						<form method='POST' />
+							<div class="panel-body">
+								<?php
+								$user = 'root';
+								$password = '';
+								$db = 'databaseproject';
+								$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+								$inputUser = $_SESSION['userLoggedIn'];
+								$sqlQuery = "SELECT universityName FROM `users` WHERE `uid` = '$inputUser'";
+								$result = mysqli_query($link, $sqlQuery);
+								$userInfo = mysqli_fetch_array($result);
+								$userUniversity = $userInfo['universityName'];
+								$sqlQuery = "SELECT rsos.rsoName FROM rsos, users WHERE (users.uid = '$inputUser') AND (users.universityName = rsos.universityName) AND (rsos.isApproved = 1) AND rsos.rsoName NOT IN (SELECT rsoName FROM rsomembers WHERE uid = '$inputUser')";
+								$result = mysqli_query($link, $sqlQuery);
+								
+								if (mysqli_num_rows($result) > 0) {
+									// output data of each row
+									$i = 0;
+									echo "<br>";
+									echo "<table class='table table-hover'>
+												<thead>
+													<th>
+														Join
+													</th>
+													<th>
+														RSO Name
+													</th>
+												</thead>
+												<tbody>
+										";
+									while($row = mysqli_fetch_array($result)) {
+										$rsoName = $row["rsoName"];
+										 echo "	<center>
+													<tr>
+														<td>
+															<input type='checkbox' name='chk_group[]' value='$rsoName' />  
+														</td>
+														<td>
+															$rsoName
+														</td>
+													</tr>
+												</center>
+											";
+										$i++;
+									  }
+									  echo "<br>";
+									  echo "
+												</tbody>
+											</table>
+										  ";
+									  echo "<center><button class='btn btn-default' type='submit' name='joinRSO'>Join RSO</button></center>";
+								}
+								else {
+									echo " There are no pending RSO requests!<br>";
+								}
+								?>
+						</div>
+						</form>
 						<?php
-							$user = 'root';
-							$password = '';
-							$db = 'databaseproject';
-							$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
-							$inputUser = $_SESSION['userLoggedIn'];
-							
-							$sqlQuery = "SELECT universityName FROM `users` WHERE `uid` = '$inputUser'";
-							$result = mysqli_query($link, $sqlQuery);
-							$userInfo = mysqli_fetch_array($result);
-							$userUniversity = userInfo['universityName'];
-							
-							$sqlQuery = "SELECT rsoName FROM `universities`, WHERE `uid` = '$inputUser'";
-							$sqlQuery = "SELECT universities.rsoName FROM universities, rsomembers WHERE (rsomembers.uid != '$userID') AND (universities.universityName = '$userUniversity')" ;
+							if (isset($_POST['chk_group'])) {
+								$optionArray = $_POST['chk_group'];
+								for ($i=0; $i<count($optionArray); $i++) {
+									$sqlQuery = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$optionArray[$i]', '$userUniversity', '$inputUser')";
+									$result = mysqli_query($link, $sqlQuery);
+									if($result){
+										echo "<span>";
+										echo $optionArray[$i]." has been approved!<br />";
+										echo "</span>";
+									}
+								}
+								if($result)
+									mysqli_close($link);
+									header('Location: joinCreateRSO.php');
+							}
 						?>
-						<div class="panel-body">
-						</div>
 					</div>
 				</div>
 			</div>
-			
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							Leave RSOs
-						</div>
-						
-						<div class="panel-body">
-						
-						</div>
-					</div>
-				</div>
-			</div>
-			
+				
 			<div class="row" id="rso-create-form">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Create RSO
 						</div>
-						
-						<div class="panel-body">
-							
-							<div class="form-group">
-								<label for="newRSO-name">RSO Name</label>
-								<input type="text" class="form-control" id="newRSO-name" placeholder="Name">
-							</div>
-							
-							<div class="form-group">
-								<label for="newRSO-university">RSO University</label>
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" id="university-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										University
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="university-select">
-										<li><a href="#">Action</a></li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-										<li role="separator" class="divider"></li>
-										<li><a href="#">Separated link</a></li>
-									</ul>
+						<form method="POST" />
+							<div class="panel-body">
+								
+								<div class="form-group">
+									<label for="newRSO-name">RSO Name</label>
+									<input type="text" class="form-control" name="newRSO-name" placeholder="Name">
 								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="newRSO-description">RSO Description</label>
-								<textarea rows="5" class="form-control" id="newRSO-description" placeholder="Description"></textarea>
-							</div>
-							
-							<div class="row">
-								<div class="col-sm-8 col-sm-offset-2">
-									<div class="panel panel-info">
-										<div class="panel-heading">
-											RSO Initial Members
-										</div>
-										<div class="panel-body">
-											Creating a new RSO requires five (5) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
+								
+								<div class="form-group">
+									<label for="newRSO-university">RSO University</label>
+									<?php
+										$user = 'root';
+										$password = '';
+										$db = 'databaseproject';
+										$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+										$sqlQuery = "SELECT `universityName` FROM `universities` WHERE 1";
+										$result = mysqli_query($link, $sqlQuery);
+										echo "<div class='dropdown'>";
+										echo"<select class='btn btn-default 'name='UniversityName'>";
+										echo "<option size =100 ></option>";
+										while($row = mysqli_fetch_array($result)){
+											echo "<option value='".$row['universityName']."'>".$row['universityName']."</option>";
+										}
+										echo "</select>";
+										echo"</div>";
+										mysqli_close($link);
+									?>
+								</div>
+								
+								<div class="form-group">
+									<label for="newRSO-description">RSO Description</label>
+									<textarea rows="5" class="form-control" name="newRSO-description" placeholder="Description"></textarea>
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-8 col-sm-offset-2">
+										<div class="panel panel-info">
+											<div class="panel-heading">
+												RSO Initial Members
+											</div>
+											<div class="panel-body">
+												Creating a new RSO requires six (6) initial members, one of which must be assigned as the RSO Admin. The RSO Admin is responsible for creating events on behalf of their RSO and are the only members allowed to do so.
+											</div>
 										</div>
 									</div>
 								</div>
+								
+								<div class="form-group">
+									<label for="newRSO-admin">RSO Admin Email</label>
+									<input type="text" class="form-control" name="newRSO-admin" placeholder="Admin Email">
+								</div>
+								
+								<div class="form-group">
+									<label for="newRSO-member-1">RSO Member Emails</label>
+									<input type="text" class="form-control" name="newRSO-member-1" placeholder="Member Email">
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control" name="newRSO-member-2" placeholder="Member Email">
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control" name="newRSO-member-3" placeholder="Member Email">
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control" name="newRSO-member-4" placeholder="Member Email">
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control" name="newRSO-member-5" placeholder="Member Email">
+								</div>
+								
+								<button class="btn btn-default" type="submit" name="createRSO">Create RSO</button>
+								
 							</div>
+						</form>
+						<?php
+							if(!empty($_POST['newRSO-name']) && !empty($_POST['UniversityName'])){
+								$user = 'root';
+								$password = '';
+								$db = 'databaseproject';
+								$link = new mysqli('localhost', $user, $password, $db) or die("Unable to connect!");
+								
+								$rsoName = $_POST['newRSO-name'];
+								$rsoMember1 = $_POST['newRSO-member-1'];
+								$rsoMember2 = $_POST['newRSO-member-2'];
+								$rsoMember3 = $_POST['newRSO-member-3'];
+								$rsoMember4 = $_POST['newRSO-member-4'];
+								$rsoMember5 = $_POST['newRSO-member-5'];
+								$rsoAdmin = $_POST['newRSO-admin'];
+								$rsoDescription = $_POST['newRSO-description'];
+								$universityName = $_POST['UniversityName'];
+								
+								$sqlQuery1 = "INSERT INTO `rsos`(`rsoName`, `universityName`, `uid`, `description`) VALUES ('$rsoName', '$universityName', '$rsoAdmin','$rsoDescription')";
+								$sqlQuery2 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName', '$universityName','$rsoMember1')";
+								$sqlQuery3 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName','$universityName','$rsoMember2')";
+								$sqlQuery4 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName','$universityName','$rsoMember3')";
+								$sqlQuery5 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName','$universityName','$rsoMember4')";
+								$sqlQuery6 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName','$universityName','$rsoMember5')";
+								$sqlQuery7 = "INSERT INTO `rsomembers`(`rsoName`, `universityName`, `uid`) VALUES ('$rsoName','$universityName','$rsoAdmin')";
+								
+								$result1 = mysqli_query($link, $sqlQuery1);
+								$result2 = mysqli_query($link, $sqlQuery2);
+								$result3 = mysqli_query($link, $sqlQuery3);
+								$result4 = mysqli_query($link, $sqlQuery4);
+								$result5 = mysqli_query($link, $sqlQuery5);
+								$result6 = mysqli_query($link, $sqlQuery6);
+								$result7 = mysqli_query($link, $sqlQuery7);
+								
+								if($result1 && $result2 && $result3 && $result4 && $result5 && $result6 && $result7)
+								{
+									echo "RSO created!";
+								}
+							}
 							
-							<div class="form-group">
-								<label for="newRSO-admin">RSO Admin Email</label>
-								<input type="text" class="form-control" id="newRSO-admin" placeholder="Admin Email">
-							</div>
-							
-							<div class="form-group">
-								<label for="newRSO-member-1">RSO Member Emails</label>
-								<input type="text" class="form-control" id="newRSO-member-1" placeholder="Member Email">
-							</div>
-							
-							<div class="form-group">
-								<input type="text" class="form-control" id="newRSO-member-2" placeholder="Member Email">
-							</div>
-							
-							<div class="form-group">
-								<input type="text" class="form-control" id="newRSO-member-3" placeholder="Member Email">
-							</div>
-							
-							<div class="form-group">
-								<input type="text" class="form-control" id="newRSO-member-4" placeholder="Member Email">
-							</div>
-							
-						</div>	
+						?>
+					
 					</div>
 				</div>
 			</div>
@@ -144,7 +244,7 @@ session_start();
 			
 			<div class="row">
 				<center>
-					<a href="home.php" class="btn btn-primary">Back to Events</a>
+					<a href="studentHome.php" class="btn btn-primary">Back to Events</a>
 				</center>
 			</div>
 			

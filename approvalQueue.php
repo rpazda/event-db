@@ -1,12 +1,14 @@
 <?php
-session_start();
+	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
 ?>
 <html>
 
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
-		<script type="text/javascript" src="jquery-3.0.0.js"></script>
+		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
 
@@ -19,7 +21,7 @@ session_start();
 		?>	
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Approve RSOs
@@ -27,7 +29,6 @@ session_start();
 						<form method='POST' />
 							<div class="panel-body">
 								<?php
-									
 									$user = 'root';
 									$password = '';
 									$db = 'databaseproject';
@@ -39,6 +40,23 @@ session_start();
 									if (mysqli_num_rows($result) > 0) {
 										// output data of each row
 										$i = 0;
+										echo "<table class='table table-hover'>
+												<thead>
+													<th>
+														Approve
+													</th>
+													<th>
+														RSO Name
+													</th>
+													<th>
+														University
+													</th>
+													<th>
+														RSO Admin
+													</th>
+												</thead>
+												<tbody>
+										";
 										while($row = mysqli_fetch_array($result)) {
 											$rsoName = $row["rsoName"];
 											$rsoUniversity = $row["universityName"];
@@ -46,12 +64,25 @@ session_start();
 										  echo "
 											<tr>
 											  <td>
-												<input type='checkbox' name='chk_group[]' value='$rsoName' />  $rsoName from $rsoUniversity by $rsoAdmin<br />
+												<input type='checkbox' name='chk_group[]' value='$rsoName' />
+											  </td>
+											  <td>
+												$rsoName
+											  </td>
+											  <td>
+												$rsoUniversity
+											  </td>
+											  <td>
+												$rsoAdmin
 											  </td>
 											</tr>
 										  ";
 										  $i++;
 										  }
+										  echo "
+												</tbody>
+											</table>
+										  ";
 										  echo "<button class='btn btn-default' type='submit' name='approveRSO'>Approve RSO</button>";
 									}
 									else {
@@ -82,7 +113,7 @@ session_start();
 			</div>
 			
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Approve Events
@@ -102,22 +133,46 @@ session_start();
 									if (mysqli_num_rows($result) > 0) {
 										// output data of each row
 										$i = 0;
+										echo "<table class='table table-hover'>
+												<thead>
+													<th>
+														Approve
+													</th>
+													<th>
+														Event Name
+													</th>
+													<th>
+														University
+													</th>
+												</thead>
+												<tbody>
+										";
 										while($row = mysqli_fetch_array($result)) {
 											$eventName = $row["eventName"];
 											$eventUniversity = $row["universityName"];
 										  echo "
 											<tr>
 											  <td>
-												<input type='checkbox' name='chk_group[]' value='$eventName' />  $eventName from $eventUniversity<br />
+												<input type='checkbox' name='chk_group[]' value='$eventName' />
+											  </td>
+											  <td>
+											    $eventName
+											  </td>
+											  <td>
+											   $eventUniversity
 											  </td>
 											</tr>
 										  ";
 										  $i++;
 										  }
 										  echo "<button class='btn btn-default' type='submit' name='approveEvent'>Approve Event</button>";
+										  echo "
+												</tbody>
+											</table>
+										  ";
 									}
 									else {
-										echo " There are no pending RSO requests!<br>";
+										echo " There are no pending Event requests!<br>";
 									}
 								?>
 							</div>
@@ -141,6 +196,11 @@ session_start();
 						?>
 					</div>
 				</div>
+			</div>
+			<div class='row'>
+				<center>
+					<a class="btn btn-primary" href="adminHome.php">Back to Admin Control Panel</a>
+				</center>
 			</div>
 		</div>
 		<?php

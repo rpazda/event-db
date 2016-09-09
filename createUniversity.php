@@ -1,5 +1,7 @@
 <?php
-session_start();
+	session_start();
+	if(!$_SESSION['current'])
+		header('Location: noPermissions.php');
 ?>
 
 <html>
@@ -7,11 +9,17 @@ session_start();
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
 		
-		<script type="text/javascript" src="jquery-3.0.0.js"></script>
+		<script type="text/javascript" src="content/jquery/jquery-3.0.0.min.js"></script>
 		<link href="content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://use.fontawesome.com/808114f81f.js"></script>
 
-		
+		<style>
+			#map {
+				width: 100%;
+				height: 400px;
+				background-color: grey;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -42,12 +50,31 @@ session_start();
 									<label for="newUniversity-location">University Location</label>
 									<div id="newUniversity-location">
 										<div class="panel panel-danger">
-											<div class="panel-heading">
-												MAPS
-											</div>
-											<div class="panel-body">
-												REPLACE BEFORE PRODUCTION
-											</div>	
+											<?php
+										echo "<div id='map'></div>";
+										echo "<script>
+											function initMap() {
+												
+												var uniLocation = {lat: 1, lng: 0};
+												//change to center on uni latlong
+
+												var mapDiv = document.getElementById('map');
+												var map = new google.maps.Map(mapDiv, {
+													center: uniLocation,
+													zoom: 3
+												});
+												marker = new google.maps.Marker({position: uniLocation, map: map});
+												google.maps.event.addListener(map, 'click', function(event) {
+													marker.setMap(null)
+													marker = new google.maps.Marker({position: event.latLng, map: map});
+													position = marker.getPosition();
+												});
+											}
+										</script>";
+										echo "<script async defer
+											src='https://maps.googleapis.com/maps/api/js?key=AIzaSyA4J3mXl9mgqJGlQ1YgbDgqRMEbJDOc8pg&callback=initMap'>
+										</script>";
+									?>
 										</div>
 									</div>
 								</div>
@@ -84,6 +111,11 @@ session_start();
 						</div>	
 					</div>
 				</div>
+			</div>
+			<div class='row'>
+				<center>
+					<a class="btn btn-primary" href="adminHome.php">Back to Admin Control Panel</a>
+				</center>
 			</div>
 		</div>
 		<?php
